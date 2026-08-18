@@ -342,5 +342,18 @@ document.body.textContent =
 
 </script>
 
+  <script>
+const params = new URLSearchParams(window.location.search);
+
+if (params.get("units") === "true") {
+    document.body.innerHTML = "";
+
+    const output = document.createElement("pre");
+    output.textContent = JSON.stringify(Units, null, 2);
+
+    document.body.appendChild(output);
+}
+</script>
+
 </body>
 </html>
