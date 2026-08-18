@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Universe Tower Defense</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+    rel="stylesheet"
+  >
+
   <style>
     :root {
       --bg: linear-gradient(135deg, #8a2be2, #2979ff, #1de9b6);
@@ -14,14 +19,16 @@
       --muted: #a1aacf;
       --accent: #8a2be2;
     }
+
     body.dark {
       --bg: #050505;
       --panel: #0b0b0b;
       --card: #111;
       --text: #fff;
       --muted: #aaa;
-      --accent: #ffffff;
+      --accent: #fff;
     }
+
     body.glass {
       --bg: linear-gradient(135deg, #141e30, #243b55);
       --panel: rgba(255,255,255,.08);
@@ -30,7 +37,11 @@
       --muted: #c7c7c7;
       --accent: #00e5ff;
     }
-    * { box-sizing: border-box; }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: Inter, sans-serif;
@@ -40,11 +51,21 @@
       color: var(--text);
       transition: background .3s, color .3s;
     }
+
     @keyframes bgAnim {
-      0% { background-position: 0 0; }
-      50% { background-position: 100% 100%; }
-      100% { background-position: 0 0; }
+      0% {
+        background-position: 0 0;
+      }
+
+      50% {
+        background-position: 100% 100%;
+      }
+
+      100% {
+        background-position: 0 0;
+      }
     }
+
     nav {
       display: flex;
       justify-content: space-between;
@@ -55,7 +76,11 @@
       flex-wrap: wrap;
       gap: 10px;
     }
-    nav b { font-size: 18px; }
+
+    nav b {
+      font-size: 18px;
+    }
+
     nav button {
       background: none;
       border: none;
@@ -65,32 +90,79 @@
       font-size: 14px;
       font-weight: 600;
     }
-    nav button:hover { color: #fff; }
-    nav div { display: flex; flex-wrap: wrap; gap: 4px; }
-    section { display: none; padding: 40px; max-width: 1400px; margin: auto; }
-    section.active { display: block; }
-    .hero { text-align: center; }
-    .hero img { width: 120px; border-radius: 20px; box-shadow: 0 0 40px #fff; }
+
+    nav button:hover {
+      color: #fff;
+    }
+
+    nav div {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    section {
+      display: none;
+      padding: 40px;
+      max-width: 1400px;
+      margin: auto;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    .hero {
+      text-align: center;
+    }
+
+    .hero img {
+      width: 120px;
+      border-radius: 20px;
+      box-shadow: 0 0 40px #fff;
+    }
+
     .hero h1 {
       margin: 20px 0 10px;
-      background: linear-gradient(90deg, #8a2be2, #2979ff, #1de9b6);
+      background: linear-gradient(
+        90deg,
+        #8a2be2,
+        #2979ff,
+        #1de9b6
+      );
       -webkit-background-clip: text;
       color: transparent;
       font-size: 32px;
     }
+
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      grid-template-columns:
+        repeat(auto-fill, minmax(220px, 1fr));
       gap: 20px;
     }
+
     .value-card {
       background: rgba(0,0,0,.4);
       border-radius: 18px;
       padding: 16px;
     }
-    .value-card img { width: 100%; border-radius: 14px; }
-    .value-card b { display: block; margin-top: 10px; }
-    .value-card span { color: var(--muted); font-size: 13px; }
+
+    .value-card img {
+      width: 100%;
+      border-radius: 14px;
+    }
+
+    .value-card b {
+      display: block;
+      margin-top: 10px;
+    }
+
+    .value-card span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
     .variant-row {
       display: flex;
       gap: 8px;
@@ -98,6 +170,7 @@
       flex-wrap: wrap;
       justify-content: center;
     }
+
     .vbtn {
       border: none;
       padding: 6px 10px;
@@ -109,15 +182,32 @@
       color: var(--text);
       transition: background .15s;
     }
-    .vbtn:hover { background: rgba(255,255,255,.15); }
-    .vbtn.active { background: var(--accent); color: #000; }
-    .vbtn.hidden { display: none !important; }
+
+    .vbtn:hover {
+      background: rgba(255,255,255,.15);
+    }
+
+    .vbtn.active {
+      background: var(--accent);
+      color: #000;
+    }
+
+    .vbtn.hidden {
+      display: none !important;
+    }
+
     .value-line {
       margin-top: 8px;
       color: var(--muted);
       font-size: 13px;
     }
-    .trade { display: flex; flex-wrap: wrap; gap: 30px; }
+
+    .trade {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
     .trade-side {
       flex: 1;
       background: rgba(0,0,0,.5);
@@ -125,6 +215,7 @@
       padding: 25px;
       min-width: 280px;
     }
+
     .Unit {
       display: flex;
       gap: 12px;
@@ -136,7 +227,13 @@
       cursor: pointer;
       position: relative;
     }
-    .Unit img { width: 60px; border-radius: 12px; box-shadow: 0 0 20px #fff; }
+
+    .Unit img {
+      width: 60px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #fff;
+    }
+
     .Unit .overlay {
       position: absolute;
       top: 4px;
@@ -148,8 +245,18 @@
       border-radius: 4px;
       background: rgba(0,0,0,.6);
     }
-    .Unit .value { margin-left: auto; font-weight: 700; }
-    .total { text-align: right; margin-top: 12px; font-weight: 600; }
+
+    .Unit .value {
+      margin-left: auto;
+      font-weight: 700;
+    }
+
+    .total {
+      text-align: right;
+      margin-top: 12px;
+      font-weight: 600;
+    }
+
     .add {
       border: none;
       border-radius: 12px;
@@ -166,9 +273,24 @@
       font-size: 14px;
       transition: transform .15s;
     }
-    .add:hover { transform: scale(1.03); filter: brightness(1.1); }
-    .add .big { font-size: 28px; line-height: 1; }
-    .result { text-align: center; font-size: 26px; margin-top: 30px; font-weight: 700; }
+
+    .add:hover {
+      transform: scale(1.03);
+      filter: brightness(1.1);
+    }
+
+    .add .big {
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .result {
+      text-align: center;
+      font-size: 26px;
+      margin-top: 30px;
+      font-weight: 700;
+    }
+
     .modal {
       position: fixed;
       inset: 0;
@@ -181,7 +303,12 @@
       transition: opacity .15s;
       z-index: 1000;
     }
-    .modal.show { opacity: 1; pointer-events: auto; }
+
+    .modal.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
     .modal-box {
       background: rgba(0,0,0,.85);
       padding: 25px;
@@ -189,13 +316,16 @@
       width: 340px;
       max-width: 95vw;
     }
+
     .modal-box label {
       display: block;
       margin-top: 10px;
       color: var(--muted);
       font-size: 13px;
     }
-    .modal-box select, .modal-box input {
+
+    .modal-box select,
+    .modal-box input {
       width: 100%;
       padding: 10px;
       margin-top: 6px;
@@ -205,22 +335,16 @@
       color: #fff;
       outline: none;
     }
-    .modal-box h3 { margin: 0 0 6px; }
-    .modal-box .add { width: 100%; margin-top: 16px; }
-    .settings-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-top: 12px;
+
+    .modal-box h3 {
+      margin: 0 0 6px;
     }
-    .settings-row label { margin: 0; cursor: pointer; }
-    .settings-row input[type="checkbox"] {
-      width: 18px;
-      height: 18px;
-      accent-color: var(--accent);
-      cursor: pointer;
-      flex-shrink: 0;
+
+    .modal-box .add {
+      width: 100%;
+      margin-top: 16px;
     }
+
     .discord-btn {
       position: fixed;
       bottom: 24px;
@@ -237,13 +361,29 @@
       transition: transform .2s, box-shadow .2s;
       z-index: 999;
     }
+
     .discord-btn:hover {
       transform: translateX(-50%) scale(1.08);
       box-shadow: 0 0 40px rgba(88,101,242,.9);
     }
-    .discord-btn img { width: 28px; height: 28px; border-radius: 50%; }
-    .discord-btn span { color: #fff; font-weight: 700; font-size: 14px; white-space: nowrap; }
-    .discord-btn.hide { display: none; }
+
+    .discord-btn img {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+    }
+
+    .discord-btn span {
+      color: #fff;
+      font-weight: 700;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .discord-btn.hide {
+      display: none;
+    }
+
     .copyright-content {
       max-width: 800px;
       margin: 0 auto;
@@ -253,431 +393,2024 @@
       line-height: 1.8;
       color: var(--text);
     }
+
     .copyright-content h2 {
       text-align: center;
       margin-top: 0;
     }
+
     .copyright-content p {
       margin: 16px 0;
     }
+
     .copyright-content strong {
       color: var(--accent);
     }
+
     @media (max-width: 768px) {
-      nav { flex-direction: column; padding: 12px; text-align: center; }
-      nav div { justify-content: center; gap: 8px; }
-      nav button { margin-left: 0; }
-      section { padding: 20px; }
-      .hero h1 { font-size: 22px; }
-      .hero img { width: 90px; }
-      .grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
-      .trade { flex-direction: column; }
-      .trade-side { padding: 15px; }
-      .Unit img { width: 45px; }
-      .add { width: 100%; padding: 14px; }
-      .discord-btn { width: 90%; justify-content: center; left: 50%; transform: translateX(-50%); }
-      .discord-btn:hover { transform: translateX(-50%) scale(1.04); }
-      .copyright-content { padding: 20px; }
+
+      nav {
+        flex-direction: column;
+        padding: 12px;
+        text-align: center;
+      }
+
+      nav div {
+        justify-content: center;
+        gap: 8px;
+      }
+
+      nav button {
+        margin-left: 0;
+      }
+
+      section {
+        padding: 20px;
+      }
+
+      .hero h1 {
+        font-size: 22px;
+      }
+
+      .hero img {
+        width: 90px;
+      }
+
+      .grid {
+        grid-template-columns:
+          repeat(
+            auto-fill,
+            minmax(140px, 1fr)
+          );
+        gap: 12px;
+      }
+
+      .trade {
+        flex-direction: column;
+      }
+
+      .trade-side {
+        padding: 15px;
+      }
+
+      .Unit img {
+        width: 45px;
+      }
+
+      .add {
+        width: 100%;
+        padding: 14px;
+      }
+
+      .discord-btn {
+        width: 90%;
+        justify-content: center;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .discord-btn:hover {
+        transform:
+          translateX(-50%)
+          scale(1.04);
+      }
+
+      .copyright-content {
+        padding: 20px;
+      }
     }
   </style>
 </head>
+
 <body>
 
 <nav>
   <b>Universe Tower Defense</b>
+
   <div>
-    <button onclick="show('home')">Home</button>
-    <button onclick="show('values')">Value List</button>
-    <button onclick="show('trade')">Trade Calculator</button>
-    <button onclick="show('credits')">Credits</button>
-    <button onclick="show('copyright')">Copyright</button>
-    <button onclick="openSettings()">⚙️</button>
+    <button onclick="show('home')">
+      Home
+    </button>
+
+    <button onclick="show('values')">
+      Value List
+    </button>
+
+    <button onclick="show('trade')">
+      Trade Calculator
+    </button>
+
+    <button onclick="show('credits')">
+      Credits
+    </button>
+
+    <button onclick="show('copyright')">
+      Copyright
+    </button>
+
+    <button onclick="openSettings()">
+      ⚙️
+    </button>
   </div>
 </nav>
 
+
 <section id="home" class="active">
+
   <div class="hero">
-    <img src="https://tr.rbxcdn.com/180DAY-3960b91a6ce93b753708d694acefaf9f/256/256/Image/Webp/noFilter" alt="logo" />
-    <h1>Welcome to Universe Tower Defense</h1>
-    <p>Check values, trade smart, win more!</p>
-    <p style="font-size:14px;opacity:0.7;">⚠️ If value is 0, it means O/C or N/A.</p>
-    <p>1 value = 1 gem 💎</p>
+
+    <img
+      src="https://tr.rbxcdn.com/180DAY-3960b91a6ce93b753708d694acefaf9f/256/256/Image/Webp/noFilter"
+      alt="logo"
+    >
+
+    <h1>
+      Welcome to Universe Tower Defense
+    </h1>
+
+    <p>
+      Check values, trade smart, win more!
+    </p>
+
+    <p style="font-size:14px;opacity:.7;">
+      ⚠️ If value is 0, it means O/C or N/A.
+    </p>
+
+    <p>
+      1 value = 1 gem 💎
+    </p>
+
   </div>
+
 </section>
+
 
 <section id="credits">
+
   <h2>Credits</h2>
+
   <div class="grid">
-    <div class="value-card"><img src="https://media.discordapp.net/attachments/1476317361748578337/1531296669079965837/noFilter.png?ex=6a68b2a8&is=6a676128&hm=8ea774352e36da732edfdbdaf9444fb0b155bf6c2682fbb5b55530f455933859&=&format=webp&quality=lossless" /><b>notatroll</b><span>Created the whole site, coded all the logic, designed the site.</span></div>
-    <div class="value-card"><img src="https://media.discordapp.net/attachments/1513609731099594822/1531298848155111444/image-322.png?ex=6a68b4af&is=6a67632f&hm=8caf3bf19c3896fc55790cd5d3c00bc45061f56ca43be1e45852cea1682e345f&=&format=webp&quality=lossless" /><b>hixzik</b><span>Created the game + discord server</span></div>
-    <div class="value-card"><img src="https://media.discordapp.net/attachments/1513609731099594822/1531301734843154443/image-119.png?ex=6a68b75f&is=6a6765df&hm=e3758e771e70b39019a8a879be0c521cb82c42a6e2da722e962321ca7c430f53&=&format=webp&quality=lossless" /><b>Litvin/Zara</b><span>Helped a TON with the values</span></div>
+
+    <div class="value-card">
+
+      <img src="https://media.discordapp.net/attachments/1476317361748578337/1531296669079965837/noFilter.png?ex=6a68b2a8&is=6a676128&hm=8ea774352e36da732edfdbdaf9444fb0b155bf6c2682fbb5b55530f455933859&=&format=webp&quality=lossless">
+
+      <b>notatroll</b>
+
+      <span>
+        Created the whole site, coded all the logic,
+        designed the site.
+      </span>
+
+    </div>
+
+
+    <div class="value-card">
+
+      <img src="https://media.discordapp.net/attachments/1513609731099594822/1531298848155111444/image-322.png?ex=6a68b4af&is=6a67632f&hm=8caf3bf19c3896fc55790cd5d3c00bc45061f56ca43be1e45852cea1682e345f&=&format=webp&quality=lossless">
+
+      <b>hixzik</b>
+
+      <span>
+        Created the game + discord server
+      </span>
+
+    </div>
+
+
+    <div class="value-card">
+
+      <img src="https://media.discordapp.net/attachments/1513609731099594822/1531301734843154443/image-119.png?ex=6a68b75f&is=6a6765df&hm=e3758e771e70b39019a8a879be0c521cb82c42a6e2da722e962321ca7c430f53&=&format=webp&quality=lossless">
+
+      <b>Litvin/Zara</b>
+
+      <span>
+        Helped a TON with the values
+      </span>
+
+    </div>
+
   </div>
+
 </section>
+
 
 <section id="values">
-  <h2>Unit Values</h2>
-  <div class="grid" id="unitGrid"></div>
-  <h2 style="margin-top:40px;">Item Values</h2>
-  <div class="grid" id="itemGrid"></div>
+
+  <h2>
+    Unit Values
+  </h2>
+
+  <div
+    class="grid"
+    id="unitGrid"
+  ></div>
+
+
+  <h2 style="margin-top:40px;">
+    Item Values
+  </h2>
+
+  <div
+    class="grid"
+    id="itemGrid"
+  ></div>
+
 </section>
+
 
 <section id="trade">
+
   <div class="trade">
-    <div class="trade-side" id="you">
-      <h3>Your Offer</h3>
+
+    <div
+      class="trade-side"
+      id="you"
+    >
+
+      <h3>
+        Your Offer
+      </h3>
+
       <div class="list"></div>
-      <button class="add" onclick="openModal('you')"><span class="big">+</span><span>Add Unit</span></button>
-      <div class="total">Total: <span id="yt">0.00</span></div>
+
+      <button
+        class="add"
+        onclick="openModal('you')"
+      >
+        <span class="big">
+          +
+        </span>
+
+        <span>
+          Add Unit
+        </span>
+      </button>
+
+      <div class="total">
+        Total:
+        <span id="yt">
+          0.00
+        </span>
+      </div>
+
     </div>
-    <div class="trade-side" id="them">
-      <h3>Their Offer</h3>
+
+
+    <div
+      class="trade-side"
+      id="them"
+    >
+
+      <h3>
+        Their Offer
+      </h3>
+
       <div class="list"></div>
-      <button class="add" onclick="openModal('them')"><span class="big">+</span><span>Add Unit</span></button>
-      <div class="total">Total: <span id="tt">0.00</span></div>
+
+      <button
+        class="add"
+        onclick="openModal('them')"
+      >
+        <span class="big">
+          +
+        </span>
+
+        <span>
+          Add Unit
+        </span>
+      </button>
+
+      <div class="total">
+        Total:
+        <span id="tt">
+          0.00
+        </span>
+      </div>
+
     </div>
+
   </div>
-  <div class="result" id="res">Fair 🤝</div>
+
+
+  <div
+    class="result"
+    id="res"
+  >
+    Fair 🤝
+  </div>
+
 </section>
 
+
 <section id="copyright">
+
   <div class="copyright-content">
-    <h2>📄 Copyright</h2>
+
+    <h2>
+      📄 Copyright
+    </h2>
 
     <p>
       Hey! Just a quick note about this website.
     </p>
 
     <p>
-      I made this site myself. The code, design, layout, and pretty much
-      everything else here (except the actual values on the value list itself, unit/item pics..) belongs to me,
-      <strong>notatroll</strong> (Discord: <strong>realnotatrollyt</strong>).
+      I made this site myself. The code, design,
+      layout, and pretty much everything else here
+      (except the actual values on the value list itself,
+      unit/item pics..) belongs to me,
+      <strong>notatroll</strong>
+      (Discord:
+      <strong>realnotatrollyt</strong>).
     </p>
 
     <p>
-      Please don't copy the website, steal the code, or repost parts of it
-      somewhere else. If you want to use something, just message me first. I'm
-      usually happy to talk about it.
+      Please don't copy the website, steal the code,
+      or repost parts of it somewhere else.
+      If you want to use something, just message me first.
+      I'm usually happy to talk about it.
     </p>
 
     <p>
-      If I find someone copying my work without permission, I'll ask them to take
-      it down. If they don't, I'll report it through the proper copyright process.
+      If I find someone copying my work without permission,
+      I'll ask them to take it down.
+      If they don't, I'll report it through the proper
+      copyright process.
     </p>
 
     <p>
-      Thanks for respecting the work that went into making this project. ❤️
+      Thanks for respecting the work that went into
+      making this project. ❤️
     </p>
 
-    <p style="margin-top:30px;text-align:right;">
+    <p
+      style="
+        margin-top:30px;
+        text-align:right;
+      "
+    >
       – notatroll
     </p>
+
   </div>
+
 </section>
 
-<div class="modal" id="modal">
+
+<div
+  class="modal"
+  id="modal"
+>
+
   <div class="modal-box">
-    <h3>Add Unit / Item</h3>
-    <label>Type</label>
-    <select id="type"><option value="unit">Unit</option><option value="item">Item</option></select>
-    <label>Name</label>
+
+    <h3>
+      Add Unit / Item
+    </h3>
+
+    <label>
+      Type
+    </label>
+
+    <select id="type">
+
+      <option value="unit">
+        Unit
+      </option>
+
+      <option value="item">
+        Item
+      </option>
+
+    </select>
+
+
+    <label>
+      Name
+    </label>
+
     <select id="UnitSelect"></select>
-    <label id="variantLabel">Variant</label>
+
+
+    <label id="variantLabel">
+      Variant
+    </label>
+
     <select id="variantSelect">
-      <option value="normal">Normal</option>
-      <option value="signed">Signed</option>
-      <option value="shiny">Shiny</option>
-      <option value="both">Shiny + Signed</option>
+
+      <option value="normal">
+        Normal
+      </option>
+
+      <option value="signed">
+        Signed
+      </option>
+
+      <option value="shiny">
+        Shiny
+      </option>
+
+      <option value="both">
+        Shiny + Signed
+      </option>
+
     </select>
-    <label>Amount</label>
-    <input type="number" id="amt" value="1" min="1" step="1" />
-    <button class="add" onclick="addUnit()">Add</button>
+
+
+    <label>
+      Amount
+    </label>
+
+    <input
+      type="number"
+      id="amt"
+      value="1"
+      min="1"
+      step="1"
+    >
+
+
+    <button
+      class="add"
+      onclick="addUnit()"
+    >
+      Add
+    </button>
+
   </div>
+
 </div>
 
-<div class="modal" id="settingsModal">
+
+<div
+  class="modal"
+  id="settingsModal"
+>
+
   <div class="modal-box">
-    <h3>⚙️ Settings</h3>
-    <label>Theme</label>
+
+    <h3>
+      ⚙️ Settings
+    </h3>
+
+    <label>
+      Theme
+    </label>
+
     <select id="themeSelect">
-      <option value="colorful">Colorful</option>
-      <option value="dark">Dark</option>
-      <option value="glass">Glass</option>
+
+      <option value="colorful">
+        Colorful
+      </option>
+
+      <option value="dark">
+        Dark
+      </option>
+
+      <option value="glass">
+        Glass
+      </option>
+
     </select>
-    <button class="add" onclick="saveTheme()">Save</button>
+
+    <button
+      class="add"
+      onclick="saveTheme()"
+    >
+      Save
+    </button>
+
   </div>
+
 </div>
 
-<a class="discord-btn" id="discordBtn" href="#" target="_blank">
-  <img src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png" alt="Discord" />
-  <span>Join our Discord</span>
+
+<a
+  class="discord-btn"
+  id="discordBtn"
+  href="#"
+  target="_blank"
+>
+
+  <img
+    src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png"
+    alt="Discord"
+  >
+
+  <span>
+    Join our Discord
+  </span>
+
 </a>
 
+
 <script>
-  // Set these to true to hide Shiny or Signed variants globally.
-  const HIDE_SHINY = true;
-  const HIDE_SIGNED = true;
 
-  function loadTheme() {
-    try {
-      const raw = localStorage.getItem('mtd_theme');
-      if (raw) return raw;
-    } catch (_) {}
-    return 'colorful';
-  }
 
-  function saveTheme() {
-    const theme = document.getElementById('themeSelect').value;
-    localStorage.setItem('mtd_theme', theme);
-    applyTheme(theme);
-    document.getElementById('settingsModal').classList.remove('show');
-  }
+const HIDE_SHINY = true;
+const HIDE_SIGNED = true;
 
-  function applyTheme(theme) {
-    document.body.classList.remove('dark', 'glass');
-    if (theme === 'dark') document.body.classList.add('dark');
-    else if (theme === 'glass') document.body.classList.add('glass');
-    document.getElementById('themeSelect').value = theme;
-  }
-
-  function openSettings() {
-    const theme = loadTheme();
-    document.getElementById('themeSelect').value = theme;
-    document.getElementById('settingsModal').classList.add('show');
-  }
-  document.getElementById('settingsModal').addEventListener('click', function(e) {
-    if (e.target === this) this.classList.remove('show');
-  });
 
 const Units = [
-  { name:"Noob", img:"noob.png", base:0, signedValue:0, shinyValue:0, shinySignedValue:0, demand:0 },
-  { name:"Guest", img:"guest.png", base:1, signedValue:0, shinyValue:0, shinySignedValue:0, demand:1 },
-  { name:"Yorick", img:"yorick.png", base:1, signedValue:0, shinyValue:0, shinySignedValue:0, demand:1 },
-  { name:"Baller", img:"baller.png", base:2, signedValue:0, shinyValue:0, shinySignedValue:0, demand:1 },
-  { name:"Guest666", img:"guest666.png", base:5, signedValue:0, shinyValue:0, shinySignedValue:0, demand:1 },
-  { name:"Doombringer", img:"doombringer.png", base:5, signedValue:0, shinyValue:0, shinySignedValue:0, demand:1 },
-  { name:"Shedletsky", img:"shedletsky.png", base:15, signedValue:0, shinyValue:0, shinySignedValue:0, demand:1 },
-  { name:"C00lkidd", img:"c00lkidd.png", base:10, signedValue:0, shinyValue:0, shinySignedValue:0, demand:1 },
-  { name:"Roblox", img:"roblox.png", base:55, signedValue:0, shinyValue:0, shinySignedValue:0, demand:3 },
-  { name:"Guide", img:"guide.png", base:45, signedValue:0, shinyValue:0, shinySignedValue:0, demand:2 },
-  { name:"Mafioso", img:"mafioso.png", base:150, signedValue:0, shinyValue:0, shinySignedValue:0, demand:4 },
-  { name:"1x1x1x1", img:"1x1x1x1.png", base:550, signedValue:0, shinyValue:0, shinySignedValue:0, demand:7 },
-  { name:"1x1x1x1 final form", img:"1x1x1x1ff.png", base:2500, signedValue:0, shinyValue:0, shinySignedValue:0, demand:10 },
-  { name:"Mafioso forsakned", img:"mafiosoforsk.png", base:2000, signedValue:0, shinyValue:0, shinySignedValue:0, demand:10 },
-  { name:"Drakobloxxer", img:"Drako.png", base:9500, signedValue:0, shinyValue:0, shinySignedValue:0, demand:10 },
-  { name:"Ice king (itrapped evo)", img:"Iceking.png", base:15000, signedValue:0, shinyValue:0, shinySignedValue:0, demand:10 },
-  { name:"Dominus astra", img:"dominusastra.png", base:400, signedValue:0, shinyValue:0, shinySignedValue:0, demand:6 },
-  { name:"Amethyst overlord", img:"ametyhstoverlord.png", base:300, signedValue:0, shinyValue:0, shinySignedValue:0, demand:9 },
-  { name:"Party hixzik", img:"partyhixzik.png", base:100, signedValue:0, shinyValue:0, shinySignedValue:0, demand:4 },
-  { name:"Dominus messor", img:"dominusmessor.png", base:5, signedValue:0, shinyValue:0, shinySignedValue:0, demand:1 },
-  { name:"DIY dominus", img:"diydominus.png", base:5, signedValue:0, shinyValue:0, shinySignedValue:0, demand:1 },
-  { name:"Cake taiden", img:"caketaiden.png", base:5, signedValue:0, shinyValue:0, shinySignedValue:0, demand:1 },
-  { name:"Empyreus", img:"empyreus.png", base:900, signedValue:0, shinyValue:0, shinySignedValue:0, demand:8 },
-  { name:"Diamond ninja", img:"diamondninja.png", base:10, signedValue:0, shinyValue:0, shinySignedValue:0, demand:1 },
-  { name:"Boombox zara", img:"boomboxzara.png", base:3500, signedValue:0, shinyValue:0, shinySignedValue:0, demand:10 },
-  { name:"Happy ainur", img:"happyainur.png", base:3, signedValue:0, shinyValue:0, shinySignedValue:0, demand:1 },
-  { name:"Ruby demon", img:"rubydemon.png", base:5, signedValue:0, shinyValue:0, shinySignedValue:0, demand:1 },
-  { name:"Ellernate", img:"ellernate.png", base:1250, signedValue:0, shinyValue:0, shinySignedValue:0, demand:10 },
-  { name:"Emerald fighter", img:"emerlardfighter.png", base:5, signedValue:0, shinyValue:0, shinySignedValue:0, demand:1 },
-  { name:"Killer kyle", img:"killerkyle.png", base:50, signedValue:0, shinyValue:0, shinySignedValue:0, demand:2 },
-  { name:"Candle mastertrader", img:"candletrader.png", base:10, signedValue:0, shinyValue:0, shinySignedValue:0, demand:1 },
+
+  {
+    name: "Noob",
+    img: "noob.png",
+    base: 0,
+    signedValue: 0,
+    shinyValue: 0,
+    shinySignedValue: 0,
+    demand: 0
+  },
+
+  {
+    name: "Guest",
+    img: "guest.png",
+    base: 1,
+    signedValue: 0,
+    shinyValue: 0,
+    shinySignedValue: 0,
+    demand: 1
+  },
+
+  {
+    name: "Yorick",
+    img: "yorick.png",
+    base: 1,
+    signedValue: 0,
+    shinyValue: 0,
+    shinySignedValue: 0,
+    demand: 1
+  },
+
+  {
+    name: "Baller",
+    img: "baller.png",
+    base: 2,
+    signedValue: 0,
+    shinyValue: 0,
+    shinySignedValue: 0,
+    demand: 1
+  },
+
+  {
+    name: "Guest666",
+    img: "guest666.png",
+    base: 5,
+    signedValue: 0,
+    shinyValue: 0,
+    shinySignedValue: 0,
+    demand: 1
+  },
+
+  {
+    name: "Doombringer",
+    img: "doombringer.png",
+    base: 5,
+    signedValue: 0,
+    shinyValue: 0,
+    shinySignedValue: 0,
+    demand: 1
+  },
+
+  {
+    name: "Shedletsky",
+    img: "shedletsky.png",
+    base: 15,
+    signedValue: 0,
+    shinyValue: 0,
+    shinySignedValue: 0,
+    demand: 1
+  },
+
+  {
+    name: "C00lkidd",
+    img: "c00lkidd.png",
+    base: 10,
+    signedValue: 0,
+    shinyValue: 0,
+    shinySignedValue: 0,
+    demand: 1
+  },
+
+  {
+    name: "Roblox",
+    img: "roblox.png",
+    base: 55,
+    signedValue: 0,
+    shinyValue: 0,
+    shinySignedValue: 0,
+    demand: 3
+  },
+
+  {
+    name: "Guide",
+    img: "guide.png",
+    base: 45,
+    signedValue: 0,
+    shinyValue: 0,
+    shinySignedValue: 0,
+    demand: 2
+  },
+
+  {
+    name: "Mafioso",
+    img: "mafioso.png",
+    base: 150,
+    signedValue: 0,
+    shinyValue: 0,
+    shinySignedValue: 0,
+    demand: 4
+  },
+
+  {
+    name: "1x1x1x1",
+    img: "1x1x1x1.png",
+    base: 550,
+    signedValue: 0,
+    shinyValue: 0,
+    shinySignedValue: 0,
+    demand: 7
+  },
+
+  {
+    name: "1x1x1x1 final form",
+    img: "1x1x1x1ff.png",
+    base: 2500,
+    signedValue: 0,
+    shinyValue: 0,
+    shinySignedValue: 0,
+    demand: 10
+  },
+
+  {
+    name: "Mafioso forsakned",
+    img: "mafiosoforsk.png",
+    base: 2000,
+    signedValue: 0,
+    shinyValue: 0,
+    shinySignedValue: 0,
+    demand: 10
+  },
+
+  {
+    name: "Drakobloxxer",
+    img: "Drako.png",
+    base: 9500,
+    signedValue: 0,
+    shinyValue: 0,
+    shinySignedValue: 0,
+    demand: 10
+  },
+
+  {
+    name: "Ice king (itrapped evo)",
+    img: "Iceking.png",
+    base: 15000,
+    signedValue: 0,
+    shinyValue: 0,
+    shinySignedValue: 0,
+    demand: 10
+  },
+
+  {
+    name: "Dominus astra",
+    img: "dominusastra.png",
+    base: 400,
+    signedValue: 0,
+    shinyValue: 0,
+    shinySignedValue: 0,
+    demand: 6
+  },
+
+  {
+    name: "Amethyst overlord",
+    img: "ametyhstoverlord.png",
+    base: 300,
+    signedValue: 0,
+    shinyValue: 0,
+    shinySignedValue: 0,
+    demand: 9
+  },
+
+  {
+    name: "Party hixzik",
+    img: "partyhixzik.png",
+    base: 100,
+    signedValue: 0,
+    shinyValue: 0,
+    shinySignedValue: 0,
+    demand: 4
+  },
+
+  {
+    name: "Dominus messor",
+    img: "dominusmessor.png",
+    base: 5,
+    signedValue: 0,
+    shinyValue: 0,
+    shinySignedValue: 0,
+    demand: 1
+  },
+
+  {
+    name: "DIY dominus",
+    img: "diydominus.png",
+    base: 5,
+    signedValue: 0,
+    shinyValue: 0,
+    shinySignedValue: 0,
+    demand: 1
+  },
+
+  {
+    name: "Cake taiden",
+    img: "caketaiden.png",
+    base: 5,
+    signedValue: 0,
+    shinyValue: 0,
+    shinySignedValue: 0,
+    demand: 1
+  },
+
+  {
+    name: "Empyreus",
+    img: "empyreus.png",
+    base: 900,
+    signedValue: 0,
+    shinyValue: 0,
+    shinySignedValue: 0,
+    demand: 8
+  },
+
+  {
+    name: "Diamond ninja",
+    img: "diamondninja.png",
+    base: 10,
+    signedValue: 0,
+    shinyValue: 0,
+    shinySignedValue: 0,
+    demand: 1
+  },
+
+  {
+    name: "Boombox zara",
+    img: "boomboxzara.png",
+    base: 3500,
+    signedValue: 0,
+    shinyValue: 0,
+    shinySignedValue: 0,
+    demand: 10
+  },
+
+  {
+    name: "Happy ainur",
+    img: "happyainur.png",
+    base: 3,
+    signedValue: 0,
+    shinyValue: 0,
+    shinySignedValue: 0,
+    demand: 1
+  },
+
+  {
+    name: "Ruby demon",
+    img: "rubydemon.png",
+    base: 5,
+    signedValue: 0,
+    shinyValue: 0,
+    shinySignedValue: 0,
+    demand: 1
+  },
+
+  {
+    name: "Ellernate",
+    img: "ellernate.png",
+    base: 1250,
+    signedValue: 0,
+    shinyValue: 0,
+    shinySignedValue: 0,
+    demand: 10
+  },
+
+  {
+    name: "Emerald fighter",
+    img: "emerlardfighter.png",
+    base: 5,
+    signedValue: 0,
+    shinyValue: 0,
+    shinySignedValue: 0,
+    demand: 1
+  },
+
+  {
+    name: "Killer kyle",
+    img: "killerkyle.png",
+    base: 50,
+    signedValue: 0,
+    shinyValue: 0,
+    shinySignedValue: 0,
+    demand: 2
+  },
+
+  {
+    name: "Candle mastertrader",
+    img: "candletrader.png",
+    base: 10,
+    signedValue: 0,
+    shinyValue: 0,
+    shinySignedValue: 0,
+    demand: 1
+  }
+
 ];
 
-  const Items = [
 
-  ];
+const Items = [];
 
-  const unitGrid = document.getElementById('unitGrid');
-  const itemGrid = document.getElementById('itemGrid');
-  const UnitSelect = document.getElementById('UnitSelect');
-  const modal = document.getElementById('modal');
-  const discordBtn = document.getElementById('discordBtn');
-  const yt = document.getElementById('yt');
-  const tt = document.getElementById('tt');
-  const res = document.getElementById('res');
-  const amt = document.getElementById('amt');
-  const typeSelect = document.getElementById('type');
-  const variantSelect = document.getElementById('variantSelect');
-  let currentSide = 'you';
 
-  function shouldShowVariant(mode) {
-    if (mode === 'normal') return true;
-    if (mode === 'shiny') return !HIDE_SHINY;
-    if (mode === 'signed') return !HIDE_SIGNED;
-    if (mode === 'both') return (!HIDE_SHINY && !HIDE_SIGNED);
+/*
+============================================================
+RAW API
+============================================================
+
+GitHub Pages cannot create server routes, so we use
+query parameters.
+
+?raw=true
+?raw=true&type=units
+?raw=true&type=items
+?raw=true&type=all
+
+============================================================
+*/
+
+function createRawUnit(unit) {
+
+  return {
+
+    name: unit.name,
+
+    value: unit.base,
+
+    signedValue: unit.signedValue,
+
+    shinyValue: unit.shinyValue,
+
+    shinySignedValue:
+      unit.shinySignedValue,
+
+    demand: unit.demand
+
+  };
+
+}
+
+
+function createRawItem(item) {
+
+  return {
+
+    name: item.name,
+
+    value: item.base,
+
+    demand: item.demand
+
+  };
+
+}
+
+
+function handleRawMode() {
+
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
+
+
+  const raw =
+    params.get("raw");
+
+
+  if (
+    raw !== "true" &&
+    raw !== "1"
+  ) {
+
+    return false;
+
+  }
+
+
+  const type =
+    (
+      params.get("type") ||
+      "all"
+    ).toLowerCase();
+
+
+  let output;
+
+
+
+  if (type === "units") {
+
+    output =
+      Units.map(
+        createRawUnit
+      );
+
+  }
+
+
+  else if (type === "items") {
+
+    output =
+      Items.map(
+        createRawItem
+      );
+
+  }
+
+
+
+  else {
+
+    output = {
+
+      units:
+        Units.map(
+          createRawUnit
+        ),
+
+      items:
+        Items.map(
+          createRawItem
+        )
+
+    };
+
+  }
+
+
+  /*
+  Replace the page with
+  pure JSON.
+  */
+
+  document.open();
+
+  document.write(
+    `<pre id="raw-output"></pre>`
+  );
+
+  document.close();
+
+
+  const pre =
+    document.getElementById(
+      "raw-output"
+    );
+
+
+  pre.style.cssText = `
+    margin: 0;
+    padding: 20px;
+    background: #050505;
+    color: #fff;
+    font-family: Consolas, monospace;
+    white-space: pre-wrap;
+    word-break: break-word;
+  `;
+
+
+  pre.textContent =
+    JSON.stringify(
+      output,
+      null,
+      2
+    );
+
+
+  return true;
+
+}
+
+
+
+if (
+  handleRawMode()
+) {
+
+  throw new Error(
+    "RAW MODE"
+  );
+
+}
+
+
+
+function loadTheme() {
+
+  try {
+
+    const theme =
+      localStorage.getItem(
+        "mtd_theme"
+      );
+
+    if (theme) {
+      return theme;
+    }
+
+  } catch (_) {}
+
+  return "colorful";
+
+}
+
+
+function saveTheme() {
+
+  const theme =
+    document.getElementById(
+      "themeSelect"
+    ).value;
+
+
+  try {
+
+    localStorage.setItem(
+      "mtd_theme",
+      theme
+    );
+
+  } catch (_) {}
+
+
+  applyTheme(theme);
+
+
+  document
+    .getElementById(
+      "settingsModal"
+    )
+    .classList
+    .remove("show");
+
+}
+
+
+function applyTheme(theme) {
+
+  document.body.classList.remove(
+    "dark",
+    "glass"
+  );
+
+
+  if (
+    theme === "dark"
+  ) {
+
+    document.body.classList.add(
+      "dark"
+    );
+
+  }
+
+
+  if (
+    theme === "glass"
+  ) {
+
+    document.body.classList.add(
+      "glass"
+    );
+
+  }
+
+
+  document.getElementById(
+    "themeSelect"
+  ).value = theme;
+
+}
+
+
+function openSettings() {
+
+  const theme =
+    loadTheme();
+
+
+  document.getElementById(
+    "themeSelect"
+  ).value = theme;
+
+
+  document
+    .getElementById(
+      "settingsModal"
+    )
+    .classList
+    .add("show");
+
+}
+
+
+document
+  .getElementById(
+    "settingsModal"
+  )
+  .addEventListener(
+    "click",
+    function(e) {
+
+      if (
+        e.target === this
+      ) {
+
+        this.classList.remove(
+          "show"
+        );
+
+      }
+
+    }
+  );
+
+
+const unitGrid =
+  document.getElementById(
+    "unitGrid"
+  );
+
+
+const itemGrid =
+  document.getElementById(
+    "itemGrid"
+  );
+
+
+const UnitSelect =
+  document.getElementById(
+    "UnitSelect"
+  );
+
+
+const modal =
+  document.getElementById(
+    "modal"
+  );
+
+
+const discordBtn =
+  document.getElementById(
+    "discordBtn"
+  );
+
+
+const yt =
+  document.getElementById(
+    "yt"
+  );
+
+
+const tt =
+  document.getElementById(
+    "tt"
+  );
+
+
+const res =
+  document.getElementById(
+    "res"
+  );
+
+
+const amt =
+  document.getElementById(
+    "amt"
+  );
+
+
+const typeSelect =
+  document.getElementById(
+    "type"
+  );
+
+
+const variantSelect =
+  document.getElementById(
+    "variantSelect"
+  );
+
+
+let currentSide = "you";
+
+
+function shouldShowVariant(mode) {
+
+  if (
+    mode === "normal"
+  ) {
+
     return true;
+
   }
 
-  function getVariantValue(unit, mode) {
-    switch (mode) {
-      case 'normal': return unit.base;
-      case 'signed': return unit.signedValue;
-      case 'shiny': return unit.shinyValue;
-      case 'both': return unit.shinySignedValue;
-      default: return unit.base;
-    }
+
+  if (
+    mode === "shiny"
+  ) {
+
+    return !HIDE_SHINY;
+
   }
 
-  function renderUnits() {
-    unitGrid.innerHTML = '';
-    Units.forEach(u => {
-      const card = document.createElement('div');
-      card.className = 'value-card';
-      const modes = ['normal', 'shiny', 'signed', 'both'];
-      const short = { normal:'N', shiny:'✨', signed:'✍️', both:'✨✍️' };
-      let btns = '';
-      modes.forEach(m => {
-        const show = shouldShowVariant(m);
-        const active = m === 'normal' ? 'active' : '';
-        const hidden = show ? '' : 'hidden';
-        btns += `<button class="vbtn ${active} ${hidden}" data-mode="${m}" data-unit="${u.name}">${short[m]}</button>`;
-      });
-      const displayVal = getVariantValue(u, 'normal');
-      card.innerHTML = `
-        <img src="${u.img}" alt="${u.name}" />
-        <b>${u.name}</b>
-        <div class="variant-row">${btns}</div>
-        <div class="value-line">Value: <span class="shownVal">${displayVal.toFixed(2)}</span> <span style="opacity:.75;"> | Demand: ${u.demand}/10</span></div>
-      `;
-      const shownSpan = card.querySelector('.shownVal');
-      const btnsList = card.querySelectorAll('.vbtn');
-      btnsList.forEach(btn => {
-        btn.addEventListener('click', function() {
-          btnsList.forEach(b => b.classList.remove('active'));
-          this.classList.add('active');
-          const mode = this.dataset.mode;
-          const unit = Units.find(x => x.name === this.dataset.unit);
-          if (unit) shownSpan.textContent = getVariantValue(unit, mode).toFixed(2);
-        });
-      });
-      unitGrid.appendChild(card);
-    });
+
+  if (
+    mode === "signed"
+  ) {
+
+    return !HIDE_SIGNED;
+
   }
 
-  function renderItems() {
-    itemGrid.innerHTML = '';
-    Items.forEach(it => {
-      const card = document.createElement('div');
-      card.className = 'value-card';
-      card.innerHTML = `
-        <img src="${it.img}" alt="${it.name}" />
-        <b>${it.name}</b>
-        <div class="value-line">Value: ${it.base.toFixed(2)} <span style="opacity:.75;"> | Demand: ${it.demand}/10</span></div>
-      `;
-      itemGrid.appendChild(card);
-    });
+
+  if (
+    mode === "both"
+  ) {
+
+    return (
+      !HIDE_SHINY &&
+      !HIDE_SIGNED
+    );
+
   }
 
-  function populateSelect() {
-    UnitSelect.innerHTML = '';
-    const isItem = typeSelect.value === 'item';
-    const list = isItem ? Items : Units;
-    list.forEach((p, i) => {
-      const opt = document.createElement('option');
-      opt.value = i;
-      opt.textContent = p.name;
-      UnitSelect.appendChild(opt);
-    });
-    const variantLabel = document.getElementById('variantLabel');
-    const variantSel = document.getElementById('variantSelect');
-    if (isItem) {
-      variantLabel.style.display = 'none';
-      variantSel.style.display = 'none';
-    } else {
-      variantLabel.style.display = 'block';
-      variantSel.style.display = 'block';
-      const opts = variantSel.querySelectorAll('option');
-      opts.forEach(o => {
-        const mode = o.value;
-        if (mode === 'normal') { o.style.display = 'block'; return; }
-        if (mode === 'shiny') { o.style.display = HIDE_SHINY ? 'none' : 'block'; return; }
-        if (mode === 'signed') { o.style.display = HIDE_SIGNED ? 'none' : 'block'; return; }
-        if (mode === 'both') { o.style.display = (HIDE_SHINY || HIDE_SIGNED) ? 'none' : 'block'; return; }
-      });
-      const currentVal = variantSel.value;
-      const currentOpt = variantSel.querySelector(`option[value="${currentVal}"]`);
-      if (!currentOpt || currentOpt.style.display === 'none') variantSel.value = 'normal';
-    }
+
+  return true;
+
+}
+
+
+function getVariantValue(
+  unit,
+  mode
+) {
+
+  switch (mode) {
+
+    case "normal":
+      return unit.base;
+
+    case "signed":
+      return unit.signedValue;
+
+    case "shiny":
+      return unit.shinyValue;
+
+    case "both":
+      return unit.shinySignedValue;
+
+    default:
+      return unit.base;
+
   }
 
-  function rebuildAll() {
-    renderUnits();
-    renderItems();
-    populateSelect();
-    updateTotals();
-  }
+}
 
-  function updateTotals() {
-    const sum = (side) =>
-      [...document.querySelectorAll(`#${side} .value`)]
-        .reduce((a, b) => a + (+b.textContent || 0), 0);
-    const y = sum('you');
-    const t = sum('them');
-    yt.textContent = y.toFixed(2);
-    tt.textContent = t.toFixed(2);
-    const d = y - t;
-    if (d >= 0.6) res.textContent = 'Lose 💀';
-    else if (d <= -0.6) res.textContent = 'Win 🤑';
-    else res.textContent = 'Fair 🤝';
-  }
 
-  function openModal(side) {
-    currentSide = side;
-    populateSelect();
-    modal.classList.add('show');
-  }
-  modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('show'); });
+function renderUnits() {
 
-  function addUnit() {
-    const amtVal = +amt.value || 1;
-    const index = +UnitSelect.value;
-    const isItem = typeSelect.value === 'item';
-    const baseList = isItem ? Items : Units;
-    const baseItem = baseList[index];
-    if (!baseItem) return;
-    let finalBase, variantLabel = '';
-    if (isItem) {
-      finalBase = baseItem.base;
-      variantLabel = 'Item';
-    } else {
-      const mode = variantSelect.value;
-      finalBase = getVariantValue(baseItem, mode);
-      const labels = { normal:'', signed:'✍️ ', shiny:'✨ ', both:'✨✍️ ' };
-      variantLabel = labels[mode] || '';
-    }
-    const val = (finalBase * amtVal).toFixed(2);
-    const el = document.createElement('div');
-    el.className = 'Unit';
-    el.innerHTML = `
-      <img src="${baseItem.img}" />
-      ${variantLabel ? `<div class="overlay">${variantLabel}</div>` : ''}
-      <div>
-        <b>${baseItem.name} x${amtVal}</b>
-        <div style="color:var(--muted);font-size:13px;">${isItem ? 'Item' : 'Demand ' + baseItem.demand + '/10'}</div>
+  unitGrid.innerHTML = "";
+
+
+  Units.forEach(unit => {
+
+    const card =
+      document.createElement(
+        "div"
+      );
+
+
+    card.className =
+      "value-card";
+
+
+    const modes = [
+      "normal",
+      "shiny",
+      "signed",
+      "both"
+    ];
+
+
+    const short = {
+
+      normal: "N",
+
+      shiny: "✨",
+
+      signed: "✍️",
+
+      both: "✨✍️"
+
+    };
+
+
+    let buttons = "";
+
+
+    modes.forEach(
+      mode => {
+
+        const visible =
+          shouldShowVariant(
+            mode
+          );
+
+
+        buttons += `
+
+          <button
+            class="
+              vbtn
+              ${mode === "normal"
+                ? "active"
+                : ""}
+              ${visible
+                ? ""
+                : "hidden"}
+            "
+            data-mode="${mode}"
+            data-unit="${unit.name}"
+          >
+            ${short[mode]}
+          </button>
+
+        `;
+
+      }
+    );
+
+
+    card.innerHTML = `
+
+      <img
+        src="${unit.img}"
+        alt="${unit.name}"
+      >
+
+      <b>
+        ${unit.name}
+      </b>
+
+      <div class="variant-row">
+        ${buttons}
       </div>
-      <span class="value">${val}</span>
+
+      <div class="value-line">
+
+        Value:
+
+        <span class="shownVal">
+          ${getVariantValue(
+            unit,
+            "normal"
+          ).toFixed(2)}
+        </span>
+
+        <span style="opacity:.75;">
+          |
+          Demand:
+          ${unit.demand}/10
+        </span>
+
+      </div>
+
     `;
-    el.onclick = () => { el.remove(); updateTotals(); };
-    document.querySelector(`#${currentSide} .list`).appendChild(el);
-    modal.classList.remove('show');
-    updateTotals();
+
+
+    const shown =
+      card.querySelector(
+        ".shownVal"
+      );
+
+
+    const btns =
+      card.querySelectorAll(
+        ".vbtn"
+      );
+
+
+    btns.forEach(
+      button => {
+
+        button.addEventListener(
+          "click",
+          function() {
+
+            btns.forEach(
+              b =>
+                b.classList.remove(
+                  "active"
+                )
+            );
+
+
+            this.classList.add(
+              "active"
+            );
+
+
+            const selected =
+              Units.find(
+                x =>
+                  x.name ===
+                  this.dataset.unit
+              );
+
+
+            if (!selected) {
+              return;
+            }
+
+
+            shown.textContent =
+              getVariantValue(
+                selected,
+                this.dataset.mode
+              ).toFixed(2);
+
+          }
+        );
+
+      }
+    );
+
+
+    unitGrid.appendChild(
+      card
+    );
+
+  });
+
+}
+
+
+function renderItems() {
+
+  itemGrid.innerHTML = "";
+
+
+  Items.forEach(
+    item => {
+
+      const card =
+        document.createElement(
+          "div"
+        );
+
+
+      card.className =
+        "value-card";
+
+
+      card.innerHTML = `
+
+        <img
+          src="${item.img}"
+          alt="${item.name}"
+        >
+
+        <b>
+          ${item.name}
+        </b>
+
+        <div class="value-line">
+
+          Value:
+          ${item.base.toFixed(2)}
+
+          <span style="opacity:.75;">
+            |
+            Demand:
+            ${item.demand}/10
+          </span>
+
+        </div>
+
+      `;
+
+
+      itemGrid.appendChild(
+        card
+      );
+
+    }
+  );
+
+}
+
+
+function populateSelect() {
+
+  UnitSelect.innerHTML = "";
+
+
+  const isItem =
+    typeSelect.value ===
+    "item";
+
+
+  const list =
+    isItem
+      ? Items
+      : Units;
+
+
+  list.forEach(
+    (item, index) => {
+
+      const option =
+        document.createElement(
+          "option"
+        );
+
+
+      option.value =
+        index;
+
+
+      option.textContent =
+        item.name;
+
+
+      UnitSelect.appendChild(
+        option
+      );
+
+    }
+  );
+
+
+  const variantLabel =
+    document.getElementById(
+      "variantLabel"
+    );
+
+
+  if (isItem) {
+
+    variantLabel.style.display =
+      "none";
+
+    variantSelect.style.display =
+      "none";
+
+    return;
+
   }
 
-  typeSelect.addEventListener('change', populateSelect);
 
-  function show(id) {
-    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-    if (id === 'home') discordBtn.classList.remove('hide');
-    else discordBtn.classList.add('hide');
+  variantLabel.style.display =
+    "block";
+
+
+  variantSelect.style.display =
+    "block";
+
+
+  variantSelect
+    .querySelectorAll(
+      "option"
+    )
+    .forEach(
+      option => {
+
+        if (
+          option.value ===
+          "normal"
+        ) {
+
+          option.style.display =
+            "block";
+
+        }
+
+        else if (
+          option.value ===
+          "shiny"
+        ) {
+
+          option.style.display =
+            HIDE_SHINY
+              ? "none"
+              : "block";
+
+        }
+
+        else if (
+          option.value ===
+          "signed"
+        ) {
+
+          option.style.display =
+            HIDE_SIGNED
+              ? "none"
+              : "block";
+
+        }
+
+        else if (
+          option.value ===
+          "both"
+        ) {
+
+          option.style.display =
+            (
+              HIDE_SHINY ||
+              HIDE_SIGNED
+            )
+              ? "none"
+              : "block";
+
+        }
+
+      }
+    );
+
+
+  const current =
+    variantSelect.querySelector(
+      `option[value="${variantSelect.value}"]`
+    );
+
+
+  if (
+    !current ||
+    current.style.display ===
+      "none"
+  ) {
+
+    variantSelect.value =
+      "normal";
+
   }
 
-  const savedTheme = loadTheme();
-  applyTheme(savedTheme);
-  renderUnits();
-  renderItems();
+}
+
+
+function updateTotals() {
+
+  const calculate =
+    side => {
+
+      return [
+        ...document.querySelectorAll(
+          `#${side} .value`
+        )
+      ].reduce(
+        (total, element) => {
+
+          return (
+            total +
+            (
+              +element.textContent ||
+              0
+            )
+          );
+
+        },
+        0
+      );
+
+    };
+
+
+  const yourValue =
+    calculate("you");
+
+
+  const theirValue =
+    calculate("them");
+
+
+  yt.textContent =
+    yourValue.toFixed(2);
+
+
+  tt.textContent =
+    theirValue.toFixed(2);
+
+
+  const difference =
+    yourValue -
+    theirValue;
+
+
+  if (
+    difference >= 0.6
+  ) {
+
+    res.textContent =
+      "Lose 💀";
+
+  }
+
+  else if (
+    difference <= -0.6
+  ) {
+
+    res.textContent =
+      "Win 🤑";
+
+  }
+
+  else {
+
+    res.textContent =
+      "Fair 🤝";
+
+  }
+
+}
+
+
+function openModal(side) {
+
+  currentSide =
+    side;
+
+
   populateSelect();
+
+
+  modal.classList.add(
+    "show"
+  );
+
+}
+
+
+modal.addEventListener(
+  "click",
+  event => {
+
+    if (
+      event.target ===
+      modal
+    ) {
+
+      modal.classList.remove(
+        "show"
+      );
+
+    }
+
+  }
+);
+
+
+function addUnit() {
+
+  const amount =
+    +amt.value || 1;
+
+
+  const index =
+    +UnitSelect.value;
+
+
+  const isItem =
+    typeSelect.value ===
+    "item";
+
+
+  const list =
+    isItem
+      ? Items
+      : Units;
+
+
+  const item =
+    list[index];
+
+
+  if (!item) {
+    return;
+  }
+
+
+  let value = 0;
+  let variantLabel = "";
+
+
+  if (isItem) {
+
+    value =
+      item.base;
+
+    variantLabel =
+      "Item";
+
+  }
+
+  else {
+
+    const mode =
+      variantSelect.value;
+
+
+    value =
+      getVariantValue(
+        item,
+        mode
+      );
+
+
+    const labels = {
+
+      normal: "",
+
+      signed: "✍️ ",
+
+      shiny: "✨ ",
+
+      both: "✨✍️ "
+
+    };
+
+
+    variantLabel =
+      labels[mode] ||
+      "";
+
+  }
+
+
+  const total =
+    (
+      value *
+      amount
+    ).toFixed(2);
+
+
+  const element =
+    document.createElement(
+      "div"
+    );
+
+
+  element.className =
+    "Unit";
+
+
+  element.innerHTML = `
+
+    <img
+      src="${item.img}"
+      alt="${item.name}"
+    >
+
+    ${
+      variantLabel
+        ? `
+          <div class="overlay">
+            ${variantLabel}
+          </div>
+        `
+        : ""
+    }
+
+    <div>
+
+      <b>
+        ${item.name}
+        x${amount}
+      </b>
+
+      <div
+        style="
+          color:var(--muted);
+          font-size:13px;
+        "
+      >
+
+        ${
+          isItem
+            ? "Item"
+            : "Demand " +
+              item.demand +
+              "/10"
+        }
+
+      </div>
+
+    </div>
+
+    <span class="value">
+      ${total}
+    </span>
+
+  `;
+
+
+  element.onclick =
+    () => {
+
+      element.remove();
+
+      updateTotals();
+
+    };
+
+
+  document
+    .querySelector(
+      `#${currentSide} .list`
+    )
+    .appendChild(
+      element
+    );
+
+
+  modal.classList.remove(
+    "show"
+  );
+
+
   updateTotals();
-  show('home');
+
+}
+
+
+typeSelect.addEventListener(
+  "change",
+  populateSelect
+);
+
+
+function show(id) {
+
+  document
+    .querySelectorAll(
+      "section"
+    )
+    .forEach(
+      section =>
+        section.classList.remove(
+          "active"
+        )
+    );
+
+
+  document
+    .getElementById(id)
+    .classList.add(
+      "active"
+    );
+
+
+  if (
+    id === "home"
+  ) {
+
+    discordBtn.classList.remove(
+      "hide"
+    );
+
+  }
+
+  else {
+
+    discordBtn.classList.add(
+      "hide"
+    );
+
+  }
+
+}
+
+
+
+applyTheme(
+  loadTheme()
+);
+
+renderUnits();
+renderItems();
+populateSelect();
+updateTotals();
+show("home");
+
 </script>
+
 </body>
 </html>
