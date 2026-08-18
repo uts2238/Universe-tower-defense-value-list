@@ -1563,9 +1563,6 @@ modal.addEventListener(
 );
 
 
-/* =========================================================
-   ADD UNIT
-========================================================= */
 
 function addUnit() {
 
@@ -1732,6 +1729,19 @@ updateTotals();
 
 show("home");
 
+</script>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+
+if (params.get("raw") === "true") {
+    document.body.innerHTML = "";
+
+    const output = document.createElement("pre");
+    output.textContent = JSON.stringify(Units, null, 2);
+
+    document.body.appendChild(output);
+}
 </script>
 
 </body>
